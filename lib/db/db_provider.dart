@@ -29,15 +29,6 @@ class DbProvider {
     }, version: 1);
   }
 
-  createNote(NoteModel note) async {
-    final db = await database;
-    db.insert(
-      "notes",
-      note.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
   Future<dynamic> getNotes() async {
     final db = await database;
     var result = await db.query("notes");
@@ -49,5 +40,12 @@ class DbProvider {
     }
   }
 
-  addNote(NoteModel note) {}
+  addNote(NoteModel note) async {
+    final db = await database;
+    db.insert(
+      "notes",
+      note.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
 }

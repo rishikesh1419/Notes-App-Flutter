@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/db/db_provider.dart';
 import 'package:notes_app/screens/add_note.dart';
 
-import 'models/note_model.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -55,17 +53,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text("Create your first note!"),
                   );
                 } else {
-                  List<NoteModel> data = noteData.data as List<NoteModel>;
+                  List<Map<String, dynamic>> data =
+                      noteData.data as List<Map<String, dynamic>>;
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListView.builder(
                       itemCount: data.length,
                       itemBuilder: (context, index) {
-                        String title = data[index].title;
-                        String body = data[index].body;
+                        String title = data[index]["title"];
+                        String body = data[index]["body"];
                         String creationDate =
-                            data[index].creationDate.toString();
-                        int? id = data[index].id;
+                            data[index]["creationDate"].toString();
+                        int? id = data[index]["id"];
 
                         return Card(
                           child: ListTile(
