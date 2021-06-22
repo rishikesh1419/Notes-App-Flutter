@@ -48,4 +48,6 @@ class DbProvider {
       return resultMap.isNotEmpty ? resultMap : Null;
     }
   }
+
+  addNote(NoteModel note) {}
 }

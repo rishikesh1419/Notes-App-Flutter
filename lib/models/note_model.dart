@@ -1,11 +1,11 @@
 class NoteModel {
-  int id;
+  int? id;
   String title;
   String body;
   DateTime creationDate;
 
   NoteModel(
-      {required this.id,
+      {this.id,
       required this.title,
       required this.body,
       required this.creationDate});

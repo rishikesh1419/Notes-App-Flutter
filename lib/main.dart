@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/db/db_provider.dart';
+import 'package:notes_app/screens/add_note.dart';
 
 import 'models/note_model.dart';
 
@@ -12,7 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: "/",
-      routes: {"/": (context) => HomeScreen()},
+      routes: {
+        "/": (context) => HomeScreen(),
+        "/new": (context) => AddNote(),
+      },
     );
   }
 }
@@ -61,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         String body = data[index].body;
                         String creationDate =
                             data[index].creationDate.toString();
-                        int id = data[index].id;
+                        int? id = data[index].id;
 
                         return Card(
                           child: ListTile(
@@ -88,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.note_add),
         onPressed: () {
-          // Navigator.pushNamed(context, "/add");
+          Navigator.pushNamed(context, "/new");
         },
       ),
     );
