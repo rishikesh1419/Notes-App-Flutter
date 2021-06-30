@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/db/db_provider.dart';
 import 'package:notes_app/screens/add_note.dart';
+import 'package:notes_app/screens/show_note.dart';
+
+import 'models/note_model.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,6 +17,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => HomeScreen(),
         "/new": (context) => AddNote(),
+        "/note": (context) => ShowNote(),
       },
     );
   }
@@ -68,6 +72,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         return Card(
                           child: ListTile(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                '/note',
+                                arguments: NoteModel(
+                                  title: title,
+                                  body: body,
+                                  creationDate: DateTime.parse(creationDate),
+                                  id: id,
+                                ),
+                              );
+                            },
                             title: Text(title),
                             subtitle: Text(body),
                           ),
